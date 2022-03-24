@@ -1,0 +1,8 @@
+server {
+    listen 8091;
+    server_name 114.215.149.199;
+
+    location / {
+        proxy_pass http://127.0.0.1:8090/;
+    }
+}
