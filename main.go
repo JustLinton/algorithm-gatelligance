@@ -1,8 +1,8 @@
 package main
 
 import (
-	"gatelligance/controller"
-	Entity "gatelligance/entity"
+	"gatelligance_algo/controller"
+	Entity "gatelligance_algo/entity"
 	"log"
 	"net/http"
 
@@ -47,8 +47,8 @@ func connectDatabase() (*gorm.DB, error) {
 }
 
 func initEntities(db *gorm.DB) {
-	Entity.InitUsers(db)
-	Entity.InitResources(db)
+	Entity.InitTransactionEntity(db)
+	Entity.InitLinkTransactionEntity(db)
 }
 
 func Cors() gin.HandlerFunc {

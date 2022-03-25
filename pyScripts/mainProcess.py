@@ -3,7 +3,7 @@ import sys
 import os
 
 #任务id，bili视频链接
-fileName = "./tmp/id"+sys.argv[1]+".mp3"
+fileName = "./tmp/"+sys.argv[1]+".mp3"
 # print(fileName+" "+sys.argv[2])
 # print("donwload...")
 retVal1 = os.system("python3 ./pyScripts/dnld.py "+fileName+" "+sys.argv[2])

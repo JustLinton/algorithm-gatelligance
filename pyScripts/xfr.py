@@ -121,6 +121,7 @@ class RequestApi(object):
                 sentences=json.loads(result['data'])
                 for ss in sentences:
                     res = res+ss['onebest']
+                    # print(ss['onebest'])
                 print(res)
            
             return result

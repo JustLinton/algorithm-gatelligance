@@ -1,4 +1,4 @@
-module gatelligance
+module gatelligance_algo
 
 go 1.17
 

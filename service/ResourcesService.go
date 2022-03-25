@@ -1,7 +1,7 @@
 package service
 
 import (
-	"gatelligance/entity"
+	"gatelligance_algo/entity"
 
 	"github.com/jinzhu/gorm"
 )
