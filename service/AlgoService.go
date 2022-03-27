@@ -11,6 +11,18 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
+func CheckLinkTransaction(db *gorm.DB, uuid string) (string, string, string) {
+	var transaction []entity.LinkTransaction
+	db.Find(&transaction, "id=?", uuid)
+
+	if len(transaction) == 0 {
+		fmt.Printf("transcation: not found\n")
+		return "-1", "-1", "nil"
+	}
+
+	return transaction[0].Progress, transaction[0].Status, transaction[0].Output
+}
+
 func CreateLinkTransaction(db *gorm.DB, videoLink string, err *error) string {
 
 	uuid := utils.GenerateUUID()
