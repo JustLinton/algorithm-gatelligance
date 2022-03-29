@@ -1,13 +1,31 @@
 package entity
 
-import "github.com/jinzhu/gorm"
+import (
+	"time"
 
-// Transaction 算法事务信息
+	"github.com/jinzhu/gorm"
+)
+
 type Transaction struct {
-	ID   string `gorm:"primary_key"`
-	Type string
+	ID        string `gorm:"primary_key"`
+	Server    int
+	Owner     string
+	CreatedAt time.Time
+	Type      string
+	Avatar    string
+	Title     string
 }
 
-func InitTransactionEntity(db *gorm.DB) {
+func InitTransaction(db *gorm.DB) {
 	db.AutoMigrate(&Transaction{})
 }
+
+// // Transaction 算法事务信息
+// type Transaction struct {
+// 	ID   string `gorm:"primary_key"`
+// 	Type string
+// }
+
+// func InitTransactionEntity(db *gorm.DB) {
+// 	db.AutoMigrate(&Transaction{})
+// }

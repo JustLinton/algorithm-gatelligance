@@ -3,6 +3,7 @@ package controller
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"gatelligance_algo/service"
 	"gatelligance_algo/utils"
@@ -17,14 +18,17 @@ func InitAlgoController(err *error, db *gorm.DB, router *gin.Engine) {
 	router.POST("/addLinkWork", func(c *gin.Context) {
 
 		addr := c.DefaultPostForm("addr", "nil")
-		// id := c.DefaultPostForm("id", "nil")
+		owner := c.DefaultPostForm("owner", "nil")
+		serverID := c.DefaultPostForm("sid", "nil")
 
-		if addr == "nil" {
+		if addr == "nil" || owner == "nil" || serverID == "nil" {
 			c.String(http.StatusNotAcceptable, fmt.Sprintln("network"))
 			return
 		}
 
-		tid := service.CreateLinkTransaction(db, addr, err)
+		sidInt, _ := strconv.Atoi(serverID)
+
+		tid := service.CreateLinkTransaction(db, addr, owner, sidInt, err)
 		c.String(http.StatusOK, tid)
 	})
 

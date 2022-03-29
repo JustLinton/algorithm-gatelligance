@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"os/exec"
+	"time"
 
 	"gatelligance_algo/entity"
 	"gatelligance_algo/utils"
@@ -23,13 +24,18 @@ func CheckLinkTransaction(db *gorm.DB, uuid string) (string, string, string) {
 	return transaction[0].Progress, transaction[0].Status, transaction[0].Output
 }
 
-func CreateLinkTransaction(db *gorm.DB, videoLink string, err *error) string {
+func CreateLinkTransaction(db *gorm.DB, videoLink string, owner string, serverID int, err *error) string {
 
 	uuid := utils.GenerateUUID()
 
 	var nt = new(entity.Transaction)
 	nt.ID = uuid
 	nt.Type = "1"
+	nt.CreatedAt = time.Now()
+	nt.Owner = owner
+	nt.Server = serverID
+	nt.Avatar = "https://linton-pics.oss-cn-beijing.aliyuncs.com/avatars/dog1.jpg"
+	nt.Title = "任务 " + uuid
 	db.Create(nt)
 
 	var nlt = new(entity.LinkTransaction)
